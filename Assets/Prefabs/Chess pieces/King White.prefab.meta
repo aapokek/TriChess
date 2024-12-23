@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d992acfff4e84c44e97513dc227b06b7
+timeCreated: 1471931660
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 70092
+  packageName: Chess Set
+  packageVersion: 1.0
+  assetPath: Assets/Chess Set/Prefabs/Chess King White.prefab
+  uploadId: 133684

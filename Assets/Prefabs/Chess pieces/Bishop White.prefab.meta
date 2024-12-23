@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cbc6242801d106744b30c03487c62ce2
+timeCreated: 1471931657
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 70092
+  packageName: Chess Set
+  packageVersion: 1.0
+  assetPath: Assets/Chess Set/Prefabs/Chess Bishop White.prefab
+  uploadId: 133684
