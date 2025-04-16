@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23000011962316772}
   m_Layer: 0
   m_Name: Bishop White
-  m_TagString: Untagged
+  m_TagString: Piece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 46b8eb9bf883f304c82394a832f34680, type: 2}
+  - {fileID: 2100000, guid: 1805a4e5d3362064580a1373d376dfdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
