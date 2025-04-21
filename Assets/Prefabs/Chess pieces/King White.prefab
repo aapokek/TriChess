@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4000011301568552}
   - component: {fileID: 33000014251192462}
   - component: {fileID: 23000013641408362}
+  - component: {fileID: -5047220997764437020}
   m_Layer: 0
   m_Name: King White
   m_TagString: Piece
@@ -86,3 +87,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5047220997764437020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013557280178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3284e5f2fdf1578499af2f518da99501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePosition: {x: 0, y: 0, z: 0}
+  pieceColor: 
+  isCaptured: 0

@@ -7,7 +7,7 @@ public class TileInstantiation : MonoBehaviour
     public GameObject tileBlack;
     public GameObject tileBrown;
 
-    private Dictionary<Vector3Int, Tile> tileMap = new Dictionary<Vector3Int, Tile>();
+    public Dictionary<Vector3Int, Tile> tileMap = new Dictionary<Vector3Int, Tile>();
 
 
     // Singleton instance
@@ -138,7 +138,7 @@ public class TileInstantiation : MonoBehaviour
         if (newTile != null)
         {
             newTile.CubePosition = cubePos;
-            newTile.TileColor = colour;
+            newTile.TileColour = colour;
             newTile.IsOccupied = false; // The tile starts unoccupied
             tileMap[cubePos] = newTile;
 
@@ -198,7 +198,62 @@ public class TileInstantiation : MonoBehaviour
                     // Instantiate tile if i and j have matching parity
                     if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                     {
-                        InstantiateAndPopulateTile(tile, rotation, newPosition, Color.white);
+                        InstantiateAndPopulateTile(tile, rotation, newPosition, GameConstants.WHITE);
+                    }
+                }
+            }
+        }
+    }
+
+
+    /// <summary>
+    /// Instantiates and places brown tiles on a hexagonal grid with specific layout rules.
+    /// </summary>
+    /// <param name="tile">The tile prefab to instantiate.</param>
+    /// <param name="centerX">The X coordinate of the grid's center.</param>
+    /// <param name="centerY">The Y coordinate of the grid's center.</param>
+    /// <param name="tileWidth">The width of a single tile.</param>
+    /// <param name="tileHeight">The height of a single tile.</param>
+    /// <remarks>
+    /// Tiles are placed in a staggered hex grid pattern, excluding specific
+    /// coordinates. Only tiles where i and j share the same parity are instantiated,
+    /// and each is assigned a brown color.
+    /// </remarks>
+    private void InstantateBrownTiles(GameObject tile, float centerX, float centerY,
+        float tileWidth, float tileHeight)
+    {
+        // Correct the rotation of tiles
+        Quaternion rotation = Quaternion.Euler(0, 30, 0);
+
+        HashSet<(int, int)> excludedTiles = new HashSet<(int, int)>
+        {
+            (-3, -3),
+            (-3, -5),
+            (-2, -6),
+            ( 2, -4),
+            ( 2, -6),
+            ( 3,  3),
+            ( 3, -1),
+            ( 3, -3),
+            ( 3, -5),
+        };
+
+        // Outer loop: bottom to top
+        for (int j = -6; j <= 4; j++)
+        {
+            // Inner loop: left to right conditionally
+            for (int i = -3; i <= 3; i++)
+            {
+                (int, int) tileVec = (i, j);
+                if (!excludedTiles.Contains(tileVec))
+                {
+                    float newX = centerX + 1.5f * tileWidth * i;
+                    float newZ = centerY + 0.75f * tileHeight * j;
+                    Vector3 newPosition = new Vector3(newX, 0, newZ);
+
+                    if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
+                    {
+                        InstantiateAndPopulateTile(tile, rotation, newPosition, GameConstants.BROWN);
                     }
                 }
             }
@@ -256,62 +311,7 @@ public class TileInstantiation : MonoBehaviour
 
                     if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                     {
-                        InstantiateAndPopulateTile(tile, rotation, newPosition, Color.black);
-                    }
-                }
-            }
-        }
-    }
-
-
-    /// <summary>
-    /// Instantiates and places brown tiles on a hexagonal grid with specific layout rules.
-    /// </summary>
-    /// <param name="tile">The tile prefab to instantiate.</param>
-    /// <param name="centerX">The X coordinate of the grid's center.</param>
-    /// <param name="centerY">The Y coordinate of the grid's center.</param>
-    /// <param name="tileWidth">The width of a single tile.</param>
-    /// <param name="tileHeight">The height of a single tile.</param>
-    /// <remarks>
-    /// Tiles are placed in a staggered hex grid pattern, excluding specific
-    /// coordinates. Only tiles where i and j share the same parity are instantiated,
-    /// and each is assigned a brown color.
-    /// </remarks>
-    private void InstantateBrownTiles(GameObject tile, float centerX, float centerY,
-        float tileWidth, float tileHeight)
-    {
-        // Correct the rotation of tiles
-        Quaternion rotation = Quaternion.Euler(0, 30, 0);
-
-        HashSet<(int, int)> excludedTiles = new HashSet<(int, int)>
-        {
-            (-3, -3),
-            (-3, -5),
-            (-2, -6),
-            ( 2, -4),
-            ( 2, -6),
-            ( 3,  3),
-            ( 3, -1),
-            ( 3, -3),
-            ( 3, -5),
-        };
-
-        // Outer loop: bottom to top
-        for (int j = -6; j <= 4; j++)
-        {
-            // Inner loop: left to right conditionally
-            for (int i = -3; i <= 3; i++)
-            {
-                (int, int) tileVec = (i, j);
-                if (!excludedTiles.Contains(tileVec))
-                {
-                    float newX = centerX + 1.5f * tileWidth * i;
-                    float newZ = centerY + 0.75f * tileHeight * j;
-                    Vector3 newPosition = new Vector3(newX, 0, newZ);
-
-                    if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
-                    {
-                        InstantiateAndPopulateTile(tile, rotation, newPosition, new Color(0.647f, 0.165f, 0.165f)); // Brown
+                        InstantiateAndPopulateTile(tile, rotation, newPosition, GameConstants.BLACK);
                     }
                 }
             }
@@ -346,10 +346,10 @@ public class TileInstantiation : MonoBehaviour
         float brownCenterZ = 0.25f;
 
         InstantateWhiteTiles(tileWhite, whiteCenterX, whiteCenterZ, tileX, tileZ);
-        InstantateBlackTiles(tileBlack, blackCenterX, blackCenterZ, tileX, tileZ);
         InstantateBrownTiles(tileBrown, brownCenterX, brownCenterZ, tileX, tileZ);
+        InstantateBlackTiles(tileBlack, blackCenterX, blackCenterZ, tileX, tileZ);
 
-        Debug.Log("Piece instantiation complete");
+        Debug.Log("Tile instantiation complete");
     }
 
 }

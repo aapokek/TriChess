@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: b42c7890d98a14e4bbf83c027564cb2a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tileWhite: {fileID: 7055842257742468825, guid: 964d7945aa69d894aaa1bf4b6d7b78ae, type: 3}
+  - tileBlack: {fileID: 1552921901936533282, guid: 92847cdd1b26bcd44aa29dcbb64f5118, type: 3}
+  - tileBrown: {fileID: 7818089629060187437, guid: a90befa70d76c834fa6b74eafbd42486, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

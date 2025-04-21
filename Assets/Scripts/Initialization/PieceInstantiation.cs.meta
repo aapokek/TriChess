@@ -1,2 +1,29 @@
 fileFormatVersion: 2
 guid: 8d8d723e8b3ae5945a3d56df1cf914f5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pawnWhite: {fileID: 1000014291839912, guid: e2e9e589ac51bdb48bcae102d4799914, type: 3}
+  - knightWhite: {fileID: 1000014234871720, guid: cb0afc2bcef746940a57b9fff95cf079, type: 3}
+  - bishopWhite: {fileID: 1000014291839912, guid: cbc6242801d106744b30c03487c62ce2, type: 3}
+  - rookWhite: {fileID: 1000012089885188, guid: 6771efaae8343104b88ef1dd839fd639, type: 3}
+  - queenWhite: {fileID: 1000011613667446, guid: c9476b5c23fb4634485fcb52734c04d5, type: 3}
+  - kingWhite: {fileID: 1000013557280178, guid: d992acfff4e84c44e97513dc227b06b7, type: 3}
+  - pawnBlack: {fileID: 778331520344352601, guid: 10859df50b355324f8462901c73275e4, type: 3}
+  - knightBlack: {fileID: 4150712257349082778, guid: 2646892aaf744494ba2790ec54bdb2ed, type: 3}
+  - bishopBlack: {fileID: 1517274581520717445, guid: 448a7af862c1ee14193fbe9797793bd6, type: 3}
+  - rookBlack: {fileID: 7527370890914337482, guid: 79e886f3e77f6c14099ee5021104ab6f, type: 3}
+  - queenBlack: {fileID: 4456115927331864610, guid: 1a5cf5eb51fe19a469bfc61583ab25dc, type: 3}
+  - kingBlack: {fileID: 2514170705107752355, guid: 818d9dbc4dbfda24d8856b510ce876a6, type: 3}
+  - pawnBrown: {fileID: 651687659001976014, guid: 2b39c7cb68b5c6c459a8636c2e9158a8, type: 3}
+  - knightBrown: {fileID: 7389666165713485363, guid: b9a90fe3ec0be8a47a9ca42b06516851, type: 3}
+  - bishopBrown: {fileID: 7359184169669647734, guid: b0c217a8a7ada634f9303ab323bebf66, type: 3}
+  - rookBrown: {fileID: 9090461276634747351, guid: bfc6f90a90a45304db12c0b009b81e4d, type: 3}
+  - queenBrown: {fileID: 6680872670450543600, guid: a74e75a20bc7e154b96d1e4d8f83ddb7, type: 3}
+  - kingBrown: {fileID: 9193120449068467240, guid: 8dcd08fc284c69049923045f3014f349, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
