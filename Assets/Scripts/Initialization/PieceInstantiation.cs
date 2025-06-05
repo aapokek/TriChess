@@ -38,15 +38,17 @@ public class PieceInstantiation : MonoBehaviour
     /// <param name="heightCorrection">Contains fine tune adjustments to the piece location height.
     /// </param>
     /// <param name="colour">The color to assign to the piece.</param>
+    /// <param name="piecesTransform">The Transform of a GameObject that parents all piece objects.
+    /// </param>
     /// <remarks>
     /// Logs an error if the instantiated prefab does not contain a Piece component.
     /// </remarks>
     private void InstantiateAndPopulatePiece(GameObject piecePrefab, Quaternion rotation, 
-        Vector3Int cubePos, Vector3 heightCorrection, Color colour)
+        Vector3Int cubePos, Vector3 heightCorrection, Color colour, Transform piecesTransform)
     {
         Vector3 worldPos = Utils.CubeToWorldPosition(cubePos);
-        // TODO: Add Parent Transform.
-        GameObject newPieceObj = Instantiate(piecePrefab, worldPos + heightCorrection, rotation);
+        GameObject newPieceObj = Instantiate(piecePrefab, worldPos + heightCorrection, rotation, 
+            piecesTransform);
         
         Piece newPiece = newPieceObj.GetComponent<Piece>();
         if (newPiece != null)
@@ -87,9 +89,12 @@ public class PieceInstantiation : MonoBehaviour
     /// <param name="queen">The queen GameObject to instantiate.</param>
     /// <param name="king">The king GameObject to instantiate.</param>
     /// <param name="colour">The colour of instantiated pieces.</param>
+    /// <param name="piecesTransform">The Transform of a GameObject that parents all piece objects.
+    /// </param>
     void InstantiatePieces(Vector3Int startCoordinate, Vector3Int rightDirection, Vector3Int 
         upDirection, Quaternion rotation, GameObject pawn, GameObject knight, GameObject bishop, 
-        GameObject rook, GameObject queen, GameObject king, Color colour)
+        GameObject rook, GameObject queen, GameObject king, Color colour, Transform 
+        piecesTransform)
     {
         Vector3 heightCorrection = new Vector3(0, 0.25f, 0);
 
@@ -101,46 +106,55 @@ public class PieceInstantiation : MonoBehaviour
 
             if (rowNum == 0) // First row: Rook, Queen, King, Rook
             {
-                InstantiateAndPopulatePiece(rook, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(rook, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(queen, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(queen, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(king, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(king, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(rook, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(rook, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
             }
             else if (rowNum == 1) // Second row: Knight, Bishop, Bishop, Bishop, Knight
             {
-                InstantiateAndPopulatePiece(knight, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(knight, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(bishop, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
 
                 // Proceed to the next tile
                 pos += rightDirection;
 
-                InstantiateAndPopulatePiece(knight, rotation, pos, heightCorrection, colour);
+                InstantiateAndPopulatePiece(knight, rotation, pos, heightCorrection, colour,
+                    piecesTransform);
             }
             else // Third row: Six Pawns
             {
@@ -148,7 +162,8 @@ public class PieceInstantiation : MonoBehaviour
 
                 for (int k = 0; k < 6; k++)
                 {
-                    InstantiateAndPopulatePiece(pawn, rotation, pos, pawnHeightCorrection, colour);
+                    InstantiateAndPopulatePiece(pawn, rotation, pos, pawnHeightCorrection, colour,
+                        piecesTransform);
 
                     // Proceed to the next tile
                     pos += rightDirection;
@@ -160,20 +175,24 @@ public class PieceInstantiation : MonoBehaviour
 
     void Start()
     {
+        // Parent GameObject for all pieces
+        GameObject pieces = new GameObject("Pieces");
+        Transform piecesTransform = pieces.transform;
+
         // White pieces
         InstantiatePieces(new Vector3Int(-5, 1, 4), new Vector3Int(0, 1, -1), new
             Vector3Int(1, -1, 0), Quaternion.Euler(-90, -90, 0), pawnWhite, knightWhite,
-            bishopWhite, rookWhite, queenWhite, kingWhite, GameConstants.WHITE);
+            bishopWhite, rookWhite, queenWhite, kingWhite, GameConstants.WHITE, piecesTransform);
         
         // Brown pieces
         InstantiatePieces(new Vector3Int(5, -6, 1), new Vector3Int(-1, 0, 1), new
             Vector3Int(0, 1, -1), Quaternion.Euler(-90, 30, 0), pawnBrown, knightBrown,
-            bishopBrown, rookBrown, queenBrown, kingBrown, GameConstants.BROWN);
+            bishopBrown, rookBrown, queenBrown, kingBrown, GameConstants.BROWN, piecesTransform);
         
         // Black pieces
         InstantiatePieces(new Vector3Int(2, 4, -6), new Vector3Int(1, -1, 0), new
             Vector3Int(-1, 0, 1), Quaternion.Euler(-90, 150, 0), pawnBlack, knightBlack,
-            bishopBlack, rookBlack, queenBlack, kingBlack, GameConstants.BLACK);
+            bishopBlack, rookBlack, queenBlack, kingBlack, GameConstants.BLACK, piecesTransform);
 
         Debug.Log("Piece instantiation complete");
     }

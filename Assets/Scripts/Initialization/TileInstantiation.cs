@@ -18,15 +18,16 @@ public class TileInstantiation : MonoBehaviour
     /// <param name="rotation">The rotation to apply to the tile object.</param>
     /// <param name="wordlPos">The world coordinates where the tile will be placed.</param>
     /// <param name="colour">The color to assign to the tile.</param>
+    /// <param name="tilesTransform">The Transform of a GameObject that parents all tile objects.
+    /// </param>
     /// <remarks>
     /// Logs an error if the instantiated prefab does not contain a Tile component.
     /// </remarks>
     private void InstantiateAndPopulateTile(GameObject tilePrefab, Quaternion rotation, Vector3 
-        wordlPos, Color colour)
+        wordlPos, Color colour, Transform tilesTransform)
     {
         Vector3Int cubePos = Utils.WorldToCubePosition(wordlPos);
-        // TODO: Add Parent Transform.
-        GameObject newTileObj = Instantiate(tilePrefab, wordlPos, rotation);
+        GameObject newTileObj = Instantiate(tilePrefab, wordlPos, rotation, tilesTransform);
         Tile newTile = newTileObj.GetComponent<Tile>();
         if (newTile != null)
         {
@@ -59,8 +60,10 @@ public class TileInstantiation : MonoBehaviour
     /// </param>
     /// <param name="tileHeight">The height of a single tile, used for calculating z positions.
     /// </param>
+    /// <param name="tilesTransform">The Transform of a GameObject that parents all tile objects.
+    /// </param>
     private void InstantateTiles(GameObject tile, float centerX, float centerY, float tileWidth, 
-        float tileHeight)
+        float tileHeight, Transform tilesTransform)
     {
         // Correct the rotation of tiles
         Quaternion rotation = Quaternion.Euler(0, 30, 0);
@@ -96,8 +99,8 @@ public class TileInstantiation : MonoBehaviour
                         // Instantiate tile if i and j have matching parity
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
-                            InstantiateAndPopulateTile(tile, rotation,
-                                newPosition, GameConstants.WHITE);
+                            InstantiateAndPopulateTile(tile, rotation, newPosition, 
+                                GameConstants.WHITE, tilesTransform);
                         }
                     }
                 }
@@ -134,8 +137,8 @@ public class TileInstantiation : MonoBehaviour
 
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
-                            InstantiateAndPopulateTile(tile, rotation,
-                                newPosition, GameConstants.BROWN);
+                            InstantiateAndPopulateTile(tile, rotation, newPosition, 
+                                GameConstants.BROWN, tilesTransform);
                         }
                     }
                 }
@@ -176,8 +179,8 @@ public class TileInstantiation : MonoBehaviour
 
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
-                            InstantiateAndPopulateTile(tile, rotation,
-                                newPosition, GameConstants.BLACK);
+                            InstantiateAndPopulateTile(tile, rotation, newPosition, 
+                                GameConstants.BLACK, tilesTransform);
                         }
                     }
                 }
@@ -216,14 +219,21 @@ public class TileInstantiation : MonoBehaviour
         float brownCenterX = tileWidth / 2;
         float brownCenterZ = 0.25f;
 
+        // Parent GameObject for all tiles
+        GameObject tiles = new GameObject("Tiles");
+        Transform tilesTransform = tiles.transform;
+
         // White tiles
-        InstantateTiles(tileWhite, whiteCenterX, whiteCenterZ, tileWidth, tileHeight);
+        InstantateTiles(tileWhite, whiteCenterX, whiteCenterZ, tileWidth, tileHeight, 
+            tilesTransform);
 
         // Brown tiles
-        InstantateTiles(tileBrown, brownCenterX, brownCenterZ, tileWidth, tileHeight);
+        InstantateTiles(tileBrown, brownCenterX, brownCenterZ, tileWidth, tileHeight, 
+            tilesTransform);
 
         // Black tiles
-        InstantateTiles(tileBlack, blackCenterX, blackCenterZ, tileWidth, tileHeight);
+        InstantateTiles(tileBlack, blackCenterX, blackCenterZ, tileWidth, tileHeight, 
+            tilesTransform);
 
         Debug.Log("Tile instantiation complete");
     }
