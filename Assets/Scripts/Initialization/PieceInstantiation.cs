@@ -1,8 +1,10 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PieceInstantiation : MonoBehaviour
 {
+    // Reference to the TileInstantiation script
+    private TileInstantiation tileInstantiation; // Private, set in Awake
+    
     // Game pieces
     public GameObject pawnWhite;
     public GameObject knightWhite;
@@ -25,7 +27,8 @@ public class PieceInstantiation : MonoBehaviour
     public GameObject queenBrown;
     public GameObject kingBrown;
 
-    public Dictionary<Vector3Int, Piece> pieceMap = new Dictionary<Vector3Int, Piece>();
+    private Datatypes.PieceMap pieceMap = new Datatypes.PieceMap();
+
 
     /// <summary>
     /// Instantiates a piece prefab at a given world position with specified rotation and color, 
@@ -61,12 +64,29 @@ public class PieceInstantiation : MonoBehaviour
             Debug.Log($"Added a piece with world position of {worldPos} and cube position " +
                 $"of {cubePos} to the piece map");
 
-            // TODO: Make tiles where new piece is added ocupied.
+            // Set the tile's OccupyingPiece to the new piece
+            if (tileInstantiation != null)
+            {
+                var tileMap = tileInstantiation.GetTileMap();
+                if (tileMap.ContainsKey(cubePos))
+                {
+                    tileMap[cubePos].OccupyingPiece = newPiece;
+                    Debug.Log($"Assigned {newPiece.name} to occupy tile at {cubePos}");
+                }
+                else
+                {
+                    Debug.LogError($"No tile found at {cubePos} for piece placement");
+                }
+            }
+            else
+            {
+                Debug.LogError("TileInstantiation component was not found within Awake");
+            }
         }
         else
         {
             Debug.LogError("The instantiated piece prefab does not have a Piece component " +
-                "attached.");
+                "attached");
         }
     }
 
@@ -169,6 +189,16 @@ public class PieceInstantiation : MonoBehaviour
                     pos += rightDirection;
                 }
             }
+        }
+    }
+
+
+    void Awake()
+    {
+        tileInstantiation = GetComponent<TileInstantiation>();
+        if (tileInstantiation == null)
+        {
+            Debug.LogError("TileInstantiation component not found");
         }
     }
 

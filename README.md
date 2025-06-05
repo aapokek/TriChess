@@ -18,11 +18,10 @@ TriChess is an innovative three-player chess game built in Unity. It expands on 
 
 #### Current Status:
 - **Surroundings**: Green base layer showcasing the tabletop.
-- **Chessboard**: The hexagonal chessboard tiles instantiate inside tileMap dictionary upon game startup (Cube coordinates as keys, tiles as values).
+- **Chessboard**: The hexagonal chessboard tiles instantiate inside tileMap dictionary upon game startup (Cube coordinates as keys, tiles as values). Each tile has a OccupyingPiece property which stores the piece on top (or null if the tile is empty).
 - **Pieces**: The chesspieces instantiate inside pieceMap dictionary upon game startup (Cube coordinates as keys, pieces as values).
 
 #### To do:
-- Add a pointer to each tile that references the piece on it (or null if the tile is empty).
 - Enable player interaction with pieces (click-to-move functionality).
 - Implement movement rules based on the hexagonal board layout.
 - Implement move validation base on the movement rules.

@@ -7,8 +7,18 @@ public class TileInstantiation : MonoBehaviour
     public GameObject tileBlack;
     public GameObject tileBrown;
 
-    public Dictionary<Vector3Int, Tile> tileMap = new Dictionary<Vector3Int, Tile>();
+    private Datatypes.TileMap tileMap = new Datatypes.TileMap();
 
+
+    /// <summary>
+    /// Gets the dictionary mapping cube coordinates to tiles in the game board.
+    /// </summary>
+    /// <returns>The TileMap containing all instantiated tiles, keyed by their cube positions.
+    /// </returns>
+    public Datatypes.TileMap GetTileMap()
+    {
+        return tileMap;
+    }
 
     /// <summary>
     /// Instantiates a tile prefab at a given world position with specified rotation and color, 
@@ -33,7 +43,7 @@ public class TileInstantiation : MonoBehaviour
         {
             newTile.CubePosition = cubePos;
             newTile.TileColour = colour;
-            newTile.IsOccupied = false; // The tile starts unoccupied
+            newTile.OccupyingPiece = null; // The tile starts unoccupied
             tileMap[cubePos] = newTile;
 
             Debug.Log($"Added a tile with world position of {wordlPos} and cube position " +
@@ -42,7 +52,7 @@ public class TileInstantiation : MonoBehaviour
         else
         {
             Debug.LogError("The instantiated tile prefab does not have a Tile component " +
-                "attached.");
+                "attached");
         }
     }
 
@@ -193,6 +203,7 @@ public class TileInstantiation : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// Initializes the tile grid by calculating dimensions from a sample tile and instantiating 
     /// white, black, and brown tiles in their respective positions.
@@ -237,5 +248,4 @@ public class TileInstantiation : MonoBehaviour
 
         Debug.Log("Tile instantiation complete");
     }
-
 }
