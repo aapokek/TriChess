@@ -1,8 +1,16 @@
 using UnityEngine;
 
-public static class GameConstants
+public class GameConstants
 {
-    public static Color WHITE = Color.white;
-    public static Color BROWN = new Color(0.647f, 0.165f, 0.165f);
-    public static Color BLACK = Color.black;
+    // Unit vectors
+    public Vector3Int UNITVECTORA = new (1, 0, 0);
+    public Vector3Int UNITVECTORB = new (0, 1, 0);
+    public Vector3Int UNITVECTORC = new (0, 0, 1);
+
+    public enum PLAYERS
+    {
+        WhitePlayer,
+        BrownPlayer,
+        BlackPlayer
+    }
 }

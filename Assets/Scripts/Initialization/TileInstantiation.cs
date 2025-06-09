@@ -21,20 +21,19 @@ public class TileInstantiation : MonoBehaviour
     }
 
     /// <summary>
-    /// Instantiates a tile prefab at a given world position with specified rotation and color, 
-    /// assigns it a cube position, and adds it to the tile map.
+    /// Instantiates a tile prefab at a given world position with specified rotation, assigns it a 
+    /// cube position, and adds it to the tile map.
     /// </summary>
     /// <param name="tilePrefab">The tile prefab to instantiate.</param>
     /// <param name="rotation">The rotation to apply to the tile object.</param>
     /// <param name="wordlPos">The world coordinates where the tile will be placed.</param>
-    /// <param name="colour">The color to assign to the tile.</param>
     /// <param name="tilesTransform">The Transform of a GameObject that parents all tile objects.
     /// </param>
     /// <remarks>
     /// Logs an error if the instantiated prefab does not contain a Tile component.
     /// </remarks>
     private void InstantiateAndPopulateTile(GameObject tilePrefab, Quaternion rotation, Vector3 
-        wordlPos, Color colour, Transform tilesTransform)
+        wordlPos, Transform tilesTransform)
     {
         Vector3Int cubePos = Utils.WorldToCubePosition(wordlPos);
         GameObject newTileObj = Instantiate(tilePrefab, wordlPos, rotation, tilesTransform);
@@ -42,7 +41,6 @@ public class TileInstantiation : MonoBehaviour
         if (newTile != null)
         {
             newTile.CubePosition = cubePos;
-            newTile.TileColour = colour;
             newTile.OccupyingPiece = null; // The tile starts unoccupied
             tileMap[cubePos] = newTile;
 
@@ -110,7 +108,7 @@ public class TileInstantiation : MonoBehaviour
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
                             InstantiateAndPopulateTile(tile, rotation, newPosition, 
-                                GameConstants.WHITE, tilesTransform);
+                                tilesTransform);
                         }
                     }
                 }
@@ -148,7 +146,7 @@ public class TileInstantiation : MonoBehaviour
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
                             InstantiateAndPopulateTile(tile, rotation, newPosition, 
-                                GameConstants.BROWN, tilesTransform);
+                                tilesTransform);
                         }
                     }
                 }
@@ -190,7 +188,7 @@ public class TileInstantiation : MonoBehaviour
                         if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0))
                         {
                             InstantiateAndPopulateTile(tile, rotation, newPosition, 
-                                GameConstants.BLACK, tilesTransform);
+                                tilesTransform);
                         }
                     }
                 }
