@@ -69,6 +69,9 @@ public class PieceInstantiation : MonoBehaviour
                 piecePrefab == kingWhite)
             {
                 newPiece.whosePiece = GameConstants.PLAYERS.WhitePlayer;
+                newPiece.forwardDirection = GameConstants.UNITVECTORA;
+                newPiece.rightDirection = GameConstants.UNITVECTORB;
+                newPiece.rightDirection = GameConstants.UNITVECTORC;
             }
             else if (piecePrefab == pawnBrown ||
                      piecePrefab == knightBrown ||
@@ -78,10 +81,16 @@ public class PieceInstantiation : MonoBehaviour
                      piecePrefab == kingBrown)
             {
                 newPiece.whosePiece = GameConstants.PLAYERS.BrownPlayer;
+                newPiece.forwardDirection = GameConstants.UNITVECTORB;
+                newPiece.rightDirection = GameConstants.UNITVECTORC;
+                newPiece.leftDirection = GameConstants.UNITVECTORA;
             }
             else
             {
                 newPiece.whosePiece = GameConstants.PLAYERS.BlackPlayer;
+                newPiece.forwardDirection = GameConstants.UNITVECTORC;
+                newPiece.rightDirection = GameConstants.UNITVECTORA;
+                newPiece.leftDirection = GameConstants.UNITVECTORB;
             }
 
             // Finally, add the piece to the map

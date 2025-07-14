@@ -8,15 +8,29 @@ public class Pawn : Piece
     /// </summary>
     /// <returns>
     /// A tuple where:
-    /// - The first element is a list of <see cref="Vector3Int"/> representing the positions to 
-    /// which the piece can legally move.
-    /// - The second element is a boolean indicating whether the piece is capable of indefinite
+    /// <list type="bullet">
+    /// <item>
+    /// <description>The first element is a list of <see cref="Vector3Int"/> representing the nearest positions
+    /// to which the piece can legally move.</description>
+    /// </item>
+    /// <item>
+    /// <description>The second element is a boolean indicating whether the piece is capable of indefinite
     /// moves (e.g., true for sliding pieces like Bishop, Rook, Queen; false for fixed-move pieces
-    /// like Knight, King, Pawn).
+    /// like Knight, King, Pawn).</description>
+    /// </item>
+    /// </list>
     /// </returns>
     public override (List<Vector3Int>, bool) GetPossibleMoves()
     {
-        // TODO: Add actual logic
-        return (new List<Vector3Int>(), false);
+        List<Vector3Int> allowedMovingDirections = new List<Vector3Int>();
+
+        // one rook-like move:
+        Vector3Int oneRookMoveLeftUp = forwardDirection - rightDirection;
+        Vector3Int oneRookMoveRightUp = forwardDirection - leftDirection;
+
+        allowedMovingDirections.Add(oneRookMoveLeftUp);
+        allowedMovingDirections.Add(oneRookMoveRightUp);
+
+        return (allowedMovingDirections, false);
     }
 }
