@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     private turnStates turnState;
     private GameConstants.PLAYERS whoseTurn;
 
+    public GameConstants.PLAYERS getWhoseTurn()
+    {
+        return whoseTurn;
+    }
+
     private enum turnStates
     {
         PieceSelected,
@@ -33,7 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Initial gameplay counters
-        turnCounter = 0;
+        turnCounter = 1;
         turnState = turnStates.Idle;
         whoseTurn = GameConstants.PLAYERS.WhitePlayer;
         Debug.Log("Game started, White player begins");
@@ -50,16 +55,19 @@ public class GameManager : MonoBehaviour
         {
             case GameConstants.PLAYERS.WhitePlayer:
                 whoseTurn = GameConstants.PLAYERS.BrownPlayer;
+                turnCounter++;
                 Debug.Log("Now it's Brown's turn");
                 break;
 
             case GameConstants.PLAYERS.BrownPlayer:
                 whoseTurn = GameConstants.PLAYERS.BlackPlayer;
+                turnCounter++;
                 Debug.Log("Now it's Black's turn");
                 break;
 
             case GameConstants.PLAYERS.BlackPlayer:
                 whoseTurn = GameConstants.PLAYERS.WhitePlayer;
+                turnCounter++;
                 Debug.Log("Now it's White's turn");
                 break;
 

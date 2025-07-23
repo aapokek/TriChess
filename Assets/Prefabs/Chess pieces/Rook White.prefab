@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000013246153070}
   - component: {fileID: 23000011383343684}
   - component: {fileID: 8841864981315971684}
+  - component: {fileID: 8207998176897126271}
+  - component: {fileID: -6504957772989793739}
   m_Layer: 0
   m_Name: Rook White
   m_TagString: Piece
@@ -99,6 +101,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777ee6cbea4f28445a04a3a9573f50dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePosition: {x: 0, y: 0, z: 0}
-  pieceColor: 
-  isCaptured: 0
+--- !u!114 &8207998176897126271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012089885188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22994065a9b252d4691f3aa53e22603c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &-6504957772989793739
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012089885188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: b66f4744e8bb24a448fcfa81a1781df5, type: 3}

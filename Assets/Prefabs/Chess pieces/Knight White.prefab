@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000013243736972}
   - component: {fileID: 23000011324594170}
   - component: {fileID: 971537110555721365}
+  - component: {fileID: 417459578904243170}
+  - component: {fileID: -759649100323973121}
   m_Layer: 0
   m_Name: Knight White
   m_TagString: Piece
@@ -99,6 +101,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c446f33d530f1e54c8172f36d33104bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePosition: {x: 0, y: 0, z: 0}
-  pieceColor: 
-  isCaptured: 0
+--- !u!114 &417459578904243170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014234871720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22994065a9b252d4691f3aa53e22603c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &-759649100323973121
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014234871720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5538ed982796ebd4c8cc731f2b530e42, type: 3}

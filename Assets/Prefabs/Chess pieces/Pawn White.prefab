@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000012446370640}
   - component: {fileID: 23000011962316772}
   - component: {fileID: 4438169335908730350}
+  - component: {fileID: -475602064531212068}
+  - component: {fileID: 2958856836546705373}
   m_Layer: 0
   m_Name: Pawn White
   m_TagString: Piece
@@ -99,6 +101,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9807d8ddc5c80ec4397aef02058055f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePosition: {x: 0, y: 0, z: 0}
-  pieceColor: 
-  isCaptured: 0
+--- !u!114 &-475602064531212068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014291839912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22994065a9b252d4691f3aa53e22603c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &2958856836546705373
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014291839912}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: dc780bbe80163bc46883e8c2d96af493, type: 3}
